@@ -1,0 +1,2 @@
+(()=>{window.addEventListener("DOMContentLoaded",(()=>{console.log("please help me")}));const s=new class{constructor(s,t,h){this.length=s,this.hits=0,this.sunk=!1}hit(){this.hits+=1}isSunk(){this.hits>=this.length&&(this.sunk=!0)}}(3,0,!1);s.hit(),console.log(s.hits)})();
+//# sourceMappingURL=main.js.map
