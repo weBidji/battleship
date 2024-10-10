@@ -1,2 +1,2 @@
-(()=>{window.addEventListener("DOMContentLoaded",(()=>{console.log("please help me")}));const s=new class{constructor(s,t,h){this.length=s,this.hits=0,this.sunk=!1}hit(){this.hits+=1}isSunk(){this.hits>=this.length&&(this.sunk=!0)}}(3,0,!1);s.hit(),console.log(s.hits)})();
+(()=>{"use strict";const s=new class{constructor(){this.columns=10,this.rows=10,this.cells=[]}createBoard(){for(let s=0;s<this.rows;s++){this.cells[s]=[];for(let e=0;e<this.columns;e++)this.cells[s][e]={coords:[s,e],targeted:!1,isOccupied:!1}}}receiveAttack(s,e){}};s.createBoard(),console.table(s.cells),console.log(s.cells)})();
 //# sourceMappingURL=main.js.map
