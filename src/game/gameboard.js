@@ -5,6 +5,7 @@ export class Gameboard {
     this.columns = 10;
     this.rows = 10;
     this.cells = [];
+    this.shipCounter = 0;
   }
 
   createBoard() {
@@ -43,7 +44,7 @@ export class Gameboard {
         throw new Error("Invalid placement");
       }
     });
-    
+
     cellsToPopulate.forEach((pair) => {
       if (this.checkIfOccupied(pair[0], pair[1])) {
         throw new Error("Cell already occupied");
@@ -54,6 +55,8 @@ export class Gameboard {
       this.cells[pair[0]][pair[1]].occupied = true;
       this.cells[pair[0]][pair[1]].ship = ship;
     });
+
+    this.shipCounter++;
   }
 
   checkValidity(coord) {
