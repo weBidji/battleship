@@ -1,6 +1,7 @@
 import { Ship } from "./game/ship.js";
 import { Gameboard } from "./game/gameboard.js";
 import { Player } from "./game/player.js";
+import './style.css';
 
 const jimmy = new Player();
 
