@@ -11,7 +11,13 @@ export class Player {
     this.cruiser = new Ship("cruiser", 3);
     this.submarine = new Ship("submarine", 3);
     this.destroyer = new Ship("destroyer", 2);
-    this.remainingBoats = 5;
+  }
+
+  checkForDefeat() {
+    if (this.gameBoard.shipCounter === 0) {
+      return true;
+    }
+    return false;
   }
 }
 

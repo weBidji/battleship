@@ -80,13 +80,21 @@ export class Gameboard {
 
     if (this.cells[x][y].targeted === true) {
       throw new Error("Cell already targeted");
-    }
+    } else {
     this.cells[x][y].targeted = true;
+    }
 
     if (this.cells[x][y].ship) {
       this.cells[x][y].ship.hits++;
       this.cells[x][y].ship.isSunk();
+      if (this.cells[x][y].ship.sunk === true) {
+        this.shipCounter--;
+      }
     }
+
+    
+
+
   }
 
   // receiveAttack function that takes a pair of coordinates,
