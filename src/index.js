@@ -2,16 +2,14 @@ import { Ship } from "./ship.js";
 import { Gameboard } from "./gameboard.js";
 import { Player } from "./player.js";
 
+const jimmy = new Player();
+jimmy.gameBoard.createBoard();
 
+jimmy.gameBoard.placeShip(jimmy.cruiser, true, 2, 2);
+jimmy.gameBoard.placeShip(jimmy.carrier, true, 0, 2);
+console.table(jimmy.gameBoard.cells);
 /*
-const gb = new Gameboard();
-gb.createBoard();
-gb.placeShip("destroyer", true, 3, 2, 2);
-gb.placeShip("sloop", false, 4, 5, 5);
-// gb.placeShip("sloo", true, 4, 0, 2);
-gb.receiveAttack(2, 2);
-gb.receiveAttack(2, 3);
-gb.receiveAttack(2, 4);
-console.table(gb.cells);
-*/
+jimmy.gameBoard.placeShip("sloop", false, 5, 5);
+console.table(jimmy.gameBoard.cells);
 // should be able to report wether or not all of their ships have been sunk
+*/

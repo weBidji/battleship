@@ -36,7 +36,6 @@ export class Gameboard {
         cellsToPopulate.push([y + i, x]);
       }
     }
-
     //check if coordinates are valid or if cell isn't already occupied
 
     cellsToPopulate.forEach((pair) => {
@@ -44,7 +43,7 @@ export class Gameboard {
         throw new Error("Invalid placement");
       }
     });
-
+    
     cellsToPopulate.forEach((pair) => {
       if (this.checkIfOccupied(pair[0], pair[1])) {
         throw new Error("Cell already occupied");
