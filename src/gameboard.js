@@ -20,12 +20,10 @@ export class Gameboard {
     }
   }
 
-  placeShip(horizontal, length, x, y) {
+  placeShip(name, horizontal, length, x, y) {
     horizontal = Boolean(horizontal);
 
-    const shipToPlace = new Ship(length);
-    // gather all coords to update and check if out of bounds
-    // if , update all coords in this.cells (occupied = true)
+    const shipToPlace = new Ship(name, length);
 
     if (!this.checkValidity(x) || !this.checkValidity(y)) {
       throw new Error("Invalid placement");
@@ -58,6 +56,7 @@ export class Gameboard {
 
     cellsToPopulate.forEach((pair) => {
       this.cells[pair[0]][pair[1]].occupied = true;
+      this.cells[pair[0]][pair[1]].ship = shipToPlace;
     });
   }
 
@@ -76,13 +75,20 @@ export class Gameboard {
   }
 
   receiveAttack(x, y) {
-    if (x < 0 || x > this.rows || y < 0 || y > this.columns) {
-      throw new Error("Invalid coordinates");
+    if (!this.checkValidity(x) || !this.checkValidity(y)) {
+      throw new Error("Invalid target");
+    }
+
+    if (this.cells[x][y].targeted === true) {
+      throw new Error("Cell already targeted");
     }
     this.cells[x][y].targeted = true;
-  }
 
-  // place ships at specific coordinates by calling the ship factory or class
+    if (this.cells[x][y].ship) {
+      this.cells[x][y].ship.hits++;
+      this.cells[x][y].ship.isSunk();
+    }
+  }
 
   // receiveAttack function that takes a pair of coordinates,
 }
