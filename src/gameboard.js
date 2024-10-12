@@ -12,7 +12,6 @@ export class Gameboard {
       this.cells[i] = [];
       for (let j = 0; j < this.rows; j++) {
         this.cells[i][j] = {
-          // coords: [i, j],
           targeted: false,
           occupied: false,
         };
@@ -20,10 +19,8 @@ export class Gameboard {
     }
   }
 
-  placeShip(name, horizontal, length, x, y) {
+  placeShip(ship, horizontal, x, y) {
     horizontal = Boolean(horizontal);
-
-    const shipToPlace = new Ship(name, length);
 
     if (!this.checkValidity(x) || !this.checkValidity(y)) {
       throw new Error("Invalid placement");
@@ -31,11 +28,11 @@ export class Gameboard {
 
     let cellsToPopulate = [];
     if (horizontal) {
-      for (let i = 0; i < length; i++) {
+      for (let i = 0; i < ship.length; i++) {
         cellsToPopulate.push([y, x + i]);
       }
     } else {
-      for (let i = 0; i < length; i++) {
+      for (let i = 0; i < ship.length; i++) {
         cellsToPopulate.push([y + i, x]);
       }
     }
@@ -56,7 +53,7 @@ export class Gameboard {
 
     cellsToPopulate.forEach((pair) => {
       this.cells[pair[0]][pair[1]].occupied = true;
-      this.cells[pair[0]][pair[1]].ship = shipToPlace;
+      this.cells[pair[0]][pair[1]].ship = ship;
     });
   }
 
