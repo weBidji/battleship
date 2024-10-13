@@ -10,6 +10,7 @@ const cpu = new Player();
 
 function createPlayerBoard(player) {
   let boardToCreate;
+  let columnCounter = 0;
   player === human
     ? (boardToCreate = document.getElementById("player-board"))
     : (boardToCreate = document.getElementById("cpu-board"));
@@ -18,36 +19,29 @@ function createPlayerBoard(player) {
     col.classList.add("column");
     boardToCreate.appendChild(col);
 
+    let rowCounter = 0;
     column.forEach((row) => {
       const cell = document.createElement("div");
       cell.classList.add("game-cell");
       if (player === cpu) {
         cell.classList.add("cpu-cell");
       }
+      cell.dataset.y = rowCounter;
+      cell.dataset.x = columnCounter;
       col.appendChild(cell);
+      rowCounter++;
     });
+    columnCounter++;
   });
 }
 
-function renderBoards() {
-  createPlayerBoard(human);
+export function prepareGame() {
   createPlayerBoard(cpu);
-}
-
-const cpuCells = document.querySelectorAll(".cpu-cell");
-
-function setupEventListeners() {
-
-  console.log(cpuCells);
-  cpuCells.forEach((cell) =>
-    cell.addEventListener("click", (e) => {
-      e.target.style.backgroundColor = "red";
-      console.log("clicked");
-    })
-  );
+  createPlayerBoard(human);
+  // setupEventListeners();
 }
 
 export function loadUI() {
   renderBoards();
-  setupEventListeners();
+  // setupEventListeners();
 }

@@ -1,11 +1,11 @@
 import { Ship } from "./game/ship.js";
 import { Gameboard } from "./game/gameboard.js";
 import { Player } from "./game/player.js";
-import { loadUI } from "./UI/loadUI.js";
+import { prepareGame } from "./UI/loadUI.js";
 import "./style.css";
 
 document.addEventListener("DOMContentLoaded", () => {
-  loadUI();
+  prepareGame();
 });
 /*
 const jimmy = new Player();
