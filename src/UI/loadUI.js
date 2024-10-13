@@ -1,10 +1,11 @@
 // import { Ship } from "./game/ship.js";
 // import { Gameboard } from "./game/gameboard.js";
 import { Player } from "../game/player.js";
+import { setupEventListeners } from "../game/gameturn.js";
 
 const human = new Player();
 
-const cpu = new Player();
+export const cpu = new Player();
 
 // const playerBoard = document.getElementById("player-board");
 
@@ -38,7 +39,7 @@ function createPlayerBoard(player) {
 export function prepareGame() {
   createPlayerBoard(cpu);
   createPlayerBoard(human);
-  // setupEventListeners();
+  setupEventListeners();
 }
 
 export function loadUI() {

@@ -1,17 +1,16 @@
-import { Ship } from "./game/ship.js";
-import { Gameboard } from "./game/gameboard.js";
-import { Player } from "./game/player.js";
+import { Ship } from "./ship.js";
+import { Gameboard } from "./gameboard.js";
+import { Player } from "./player.js";
+import { cpu } from "../UI/loadUI.js";
 
-function setupEventListeners() {
+export function setupEventListeners() {
   const cpuCells = document.querySelectorAll(".cpu-cell");
-  // console.log(cpuCells);
   cpuCells.forEach((cell) =>
     cell.addEventListener("click", (e) => {
-      // e.target.style.backgroundColor = "red";
-      // console.log("clicked");
-      // find x and y
-      const x = cell.parentElement;
-      
+      cpu.gameBoard.receiveAttack(e.target.dataset.x, e.target.dataset.y);
+      console.log(
+        `Player attacked cell: ${e.target.dataset.x} : ${e.target.dataset.y}`
+      );
     })
   );
 }
