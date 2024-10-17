@@ -34,7 +34,7 @@ export class Gameboard {
       }
     } else {
       for (let i = 0; i < ship.length; i++) {
-        cellsToPopulate.push([y + i, x]);
+        cellsToPopulate.push([x, y + i]);
       }
     }
     //check if coordinates are valid or if cell isn't already occupied
@@ -77,25 +77,40 @@ export class Gameboard {
     if (!this.checkValidity(x) || !this.checkValidity(y)) {
       throw new Error("Invalid target");
     }
+    let targetCell = this.cells[y][x];
 
-    if (this.cells[x][y].targeted === true) {
+    if (targetCell.targeted === true) {
       throw new Error("Cell already targeted");
     } else {
-    this.cells[x][y].targeted = true;
+      targetCell.targeted = true;
     }
 
-    if (this.cells[x][y].ship) {
-      this.cells[x][y].ship.hits++;
-      this.cells[x][y].ship.isSunk();
-      if (this.cells[x][y].ship.sunk === true) {
+    if (targetCell.ship) {
+      targetCell.ship.hits++;
+      targetCell.ship.isSunk();
+      if (targetCell.ship.sunk === true) {
         this.shipCounter--;
       }
+
+      /* if(this.checkForDefeat()) {
+        
+
+      }*/
     }
-
-    
-
-
   }
 
-  // receiveAttack function that takes a pair of coordinates,
+  checkForDefeat() {
+    if (this.shipCounter === 0) {
+      return true;
+    }
+    return false;
+  }
+
+  generateCoords() {
+    let coords = {};
+    coords.x = Math.floor(Math.random() * 10);
+    coords.y = Math.floor(Math.random() * 10);
+
+    return coords;
+  }
 }

@@ -12,13 +12,4 @@ export class Player {
     this.submarine = new Ship("submarine", 3);
     this.destroyer = new Ship("destroyer", 2);
   }
-
-  checkForDefeat() {
-    if (this.gameBoard.shipCounter === 0) {
-      return true;
-    }
-    return false;
-  }
 }
-
-// win/lose logic

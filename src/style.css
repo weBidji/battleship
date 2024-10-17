@@ -46,3 +46,11 @@ h1 {
     cursor:pointer;
     background-color:grey;
 }
+.miss, .miss:hover{
+    background-color:red;
+}
+
+.hit, .hit:hover {
+    background-color: green;
+}
+

@@ -1,9 +1,7 @@
-// import { Ship } from "./game/ship.js";
-// import { Gameboard } from "./game/gameboard.js";
 import { Player } from "../game/player.js";
 import { setupEventListeners } from "../game/gameturn.js";
 
-const human = new Player();
+export const human = new Player();
 
 export const cpu = new Player();
 
@@ -26,9 +24,11 @@ function createPlayerBoard(player) {
       cell.classList.add("game-cell");
       if (player === cpu) {
         cell.classList.add("cpu-cell");
+      } else {
+        cell.classList.add("human-cell");
       }
-      cell.dataset.y = rowCounter;
-      cell.dataset.x = columnCounter;
+      cell.dataset.x = rowCounter;
+      cell.dataset.y = columnCounter;
       col.appendChild(cell);
       rowCounter++;
     });
@@ -40,6 +40,9 @@ export function prepareGame() {
   createPlayerBoard(cpu);
   createPlayerBoard(human);
   setupEventListeners();
+  human.gameBoard.placeShip(human.carrier, true, 0, 0)
+  cpu.gameBoard.placeShip(cpu.carrier, true, 0, 0)
+  
 }
 
 export function loadUI() {
