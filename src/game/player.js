@@ -12,4 +12,5 @@ export class Player {
     this.submarine = new Ship("submarine", 3);
     this.destroyer = new Ship("destroyer", 2);
   }
+
 }

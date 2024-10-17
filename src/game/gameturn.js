@@ -24,28 +24,19 @@ export function setupEventListeners() {
 
 function cpuTurn() {
   let cpuTarget = cpu.gameBoard.generateCoords();
+  console.log(cpuTarget);
   human.gameBoard.receiveAttack(cpuTarget.x, cpuTarget.y);
-  let target;
 
   const humanCells = document.querySelectorAll(".human-cell");
-  let found = false;
+  let target = null;
   humanCells.forEach((cell) => {
-    if (cell.dataset.x === cpuTarget.x && cell.dataset.y === cpuTarget.y) {
-      target = cell;
-      console.log(target);
+    if (cell.dataset.x == cpuTarget.x && cell.dataset.y == cpuTarget.y) {
+      hitOrMiss(human,cell.dataset.x,cell.dataset.y) ? cell.classList.add('hit') : cell.classList.add('miss');
+      return;
     }
   });
-
-  // cpuTarget = null;
-  /*
-  if (hitOrMiss(human, [e.target.dataset.x], [e.target.dataset.y])) {
-    targetCell.classList.add("hit");
-  } else {
-    targetCell.classList.add("miss");
-  }*/
-  //console.log(cpuTarget);
-  //console.table(human.gameBoard.cells);
 }
+
 
 function hitOrMiss(player, x, y) {
   if (player.gameBoard.cells[x][y].ship) {
@@ -53,8 +44,3 @@ function hitOrMiss(player, x, y) {
   }
   return false;
 }
-
-// add game turn / clicking logic
-// add cpu turn / attack
-// mix UI and game functions
-// link player/cpu gameboard object and DOM grid
