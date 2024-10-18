@@ -15,4 +15,13 @@ jimmy.gameBoard.placeShip(jimmy.battleship, false, 5, 5);
 jimmy.gameBoard.receiveAttack(2, 3);
 
 console.table(jimmy.gameBoard.cells);
+
+// Random ship placement for cpu !important -- hilight where ships are placed in DOM
+// Ship placement for player
+// Game winning / losing logic
+
+////////////////////////
+
+// Improve AI?
+// 2 Player mode?
 */

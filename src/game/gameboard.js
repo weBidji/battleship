@@ -34,10 +34,9 @@ export class Gameboard {
       }
     } else {
       for (let i = 0; i < ship.length; i++) {
-        cellsToPopulate.push([x, y + i]);
+        cellsToPopulate.push([y + i, x]);
       }
     }
-    //check if coordinates are valid or if cell isn't already occupied
 
     cellsToPopulate.forEach((pair) => {
       if (!this.checkValidity(pair[0]) || !this.checkValidity(pair[1])) {
@@ -47,12 +46,12 @@ export class Gameboard {
 
     cellsToPopulate.forEach((pair) => {
       if (this.checkIfOccupied(pair[0], pair[1])) {
-        throw new Error("Cell already occupied");
+        throw new Error(`Cell already occupied :${pair[0]} - ${pair[1]}`);
       }
     });
 
     cellsToPopulate.forEach((pair) => {
-      this.cells[pair[0]][pair[1]].occupied = true;
+      this.markAsOccupied(pair[0],pair[1])
       this.cells[pair[0]][pair[1]].ship = ship;
     });
 
@@ -60,17 +59,19 @@ export class Gameboard {
   }
 
   checkValidity(coord) {
-    if (coord < 0 || coord > this.rows || coord > this.columns) {
+    if (coord < 0 || coord >= this.rows || coord >= this.columns) {
       return false;
     }
     return true;
   }
-
   checkIfOccupied(x, y) {
     if (this.cells[x][y].occupied === true) {
       return true;
     }
     return false;
+  }
+  markAsOccupied(x, y) {
+    this.cells[x][y].occupied = true;
   }
 
   receiveAttack(x, y) {

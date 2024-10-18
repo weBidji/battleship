@@ -51,6 +51,9 @@ h1 {
 }
 
 .hit, .hit:hover {
-    background-color: green;
+    background-color: green  !important;
 }
 
+.boat {
+    background-color:blue;
+}

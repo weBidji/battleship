@@ -17,7 +17,6 @@ function createPlayerBoard(player) {
     const col = document.createElement("div");
     col.classList.add("column");
     boardToCreate.appendChild(col);
-
     let rowCounter = 0;
     column.forEach((row) => {
       const cell = document.createElement("div");
@@ -40,9 +39,23 @@ export function prepareGame() {
   createPlayerBoard(cpu);
   createPlayerBoard(human);
   setupEventListeners();
-  human.gameBoard.placeShip(human.carrier, true, 0, 0)
-  cpu.gameBoard.placeShip(cpu.carrier, true, 0, 0)
-  
+  cpu.placeShipsRandomly();
+  displayShips();
+}
+
+function displayShips() {
+  const botCells = document.querySelectorAll(".cpu-cell");
+  botCells.forEach((cell) => {
+    if (
+      cpu.gameBoard.checkIfOccupied(
+        cell.dataset.x,cell.dataset.y
+      )
+    ) {
+      console.log("pop");
+      cell.classList.add("boat");
+    }
+  });
+  //`Player attacked cell: ${e.target.dataset.x} : ${e.target.dataset.y}`
 }
 
 export function loadUI() {
