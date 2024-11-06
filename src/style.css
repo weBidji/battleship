@@ -57,3 +57,7 @@ h1 {
 .boat {
     background-color:blue;
 }
+
+.occupied {
+    background-color: purple;
+}

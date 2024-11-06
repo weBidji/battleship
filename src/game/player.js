@@ -31,17 +31,47 @@ export class Player {
         position.y
       );
     });
-    console.table(this.gameBoard.cells);
+    // console.table(this.gameBoard.cells);
   }
+  
+  generateValidPlacement(length) {
+    const randomBoolean = () => Math.random() >= 0.5;
+    let isValid = false;
+    let startingPoint, isHorizontal, x, y;
+  
+    while (!isValid) {
+      startingPoint = this.gameBoard.generateCoords();
+      isHorizontal = randomBoolean();
+      isValid = true; 
+  
+      for (let i = 0; i <= length; i++) {
+        x = isHorizontal ? startingPoint.x + i : startingPoint.x;
+        y = isHorizontal ? startingPoint.y : startingPoint.y + i;
+  
+      
+        if (
+          !this.gameBoard.checkValidity(x) ||
+          !this.gameBoard.checkValidity(y) ||
+          this.gameBoard.checkIfOccupied(x, y)
+        ) {
+          isValid = false; 
+          break; 
+        }
+      }
+    }
+
+    return { x: startingPoint.x, y: startingPoint.y, isHorizontal };
+  }
+  /*
 
   generateValidPlacement(length) {
     const startingPoint = this.gameBoard.generateCoords();
     const randomBoolean = () => Math.random() >= 0.5;
     const isHorizontal = randomBoolean();
-
+    const cpuCells = document.querySelectorAll(".cpu-cell");
     let x = 0;
     let y = 0;
-    for (let i = 0; i < length; i++) {
+    for (let i = 0; i <= length; i++) {
       x = isHorizontal ? startingPoint.x + i : startingPoint.x;
       y = isHorizontal ? startingPoint.y : startingPoint.y + i;
       if (
@@ -49,11 +79,22 @@ export class Player {
         !this.gameBoard.checkValidity(y) ||
         this.gameBoard.checkIfOccupied(x, y)
       ) {
+        const cpuCells = document.querySelectorAll(".cpu-cell");
+        console.log(x)
+        console.log(y)
+        cpuCells.forEach((cell) => {
+          if (cell.dataset.x == x && cell.dataset.y == y) {
+            cell.classList.add('occupied');
+          
+          }
+        });
+        console.log("occupied");
         return this.generateValidPlacement(length);
       }
     }
     return { x: startingPoint.x, y: startingPoint.y, isHorizontal };
   }
+  */
 }
 // generate placement:
 // - generate a valid starting point

@@ -51,7 +51,7 @@ export class Gameboard {
     });
 
     cellsToPopulate.forEach((pair) => {
-      this.markAsOccupied(pair[0],pair[1])
+      this.markAsOccupied(pair[0], pair[1]);
       this.cells[pair[0]][pair[1]].ship = ship;
     });
 
@@ -78,7 +78,7 @@ export class Gameboard {
     if (!this.checkValidity(x) || !this.checkValidity(y)) {
       throw new Error("Invalid target");
     }
-    let targetCell = this.cells[y][x];
+    let targetCell = this.cells[x][y];
 
     if (targetCell.targeted === true) {
       throw new Error("Cell already targeted");

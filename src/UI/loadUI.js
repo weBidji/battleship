@@ -26,8 +26,8 @@ function createPlayerBoard(player) {
       } else {
         cell.classList.add("human-cell");
       }
-      cell.dataset.x = rowCounter;
-      cell.dataset.y = columnCounter;
+      cell.dataset.x = columnCounter;
+      cell.dataset.y = rowCounter;
       col.appendChild(cell);
       rowCounter++;
     });
@@ -46,16 +46,10 @@ export function prepareGame() {
 function displayShips() {
   const botCells = document.querySelectorAll(".cpu-cell");
   botCells.forEach((cell) => {
-    if (
-      cpu.gameBoard.checkIfOccupied(
-        cell.dataset.x,cell.dataset.y
-      )
-    ) {
-      console.log("pop");
+    if (cpu.gameBoard.checkIfOccupied(cell.dataset.x, cell.dataset.y)) {
       cell.classList.add("boat");
     }
   });
-  //`Player attacked cell: ${e.target.dataset.x} : ${e.target.dataset.y}`
 }
 
 export function loadUI() {
